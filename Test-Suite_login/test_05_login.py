@@ -31,3 +31,9 @@ class test_05_login(unittest.TestCase):
     def tearDown(self):
         """called after every test"""
         TearDown(self.driver)
+
+if __name__ == "__main__":
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(test_05_login))
+    runner = unittest.TextTestRunner()
+    runner.run(suite)        

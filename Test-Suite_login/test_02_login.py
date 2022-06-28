@@ -8,7 +8,6 @@ from packages.testsuites.suite_login.init import (
 
 logger = project_logger("Login Test Case 2")
 
-
 class test_02_login(unittest.TestCase):  # pylint: disable=invalid-name
     """"Passing invalid email and password"""
 
