@@ -10,25 +10,28 @@ logger = project_logger("Login Test Case 3")
 
 class test_03_login(unittest.TestCase):
     """Passing invalid phone number and valid password"""
+    
     def setUp(self):
-        """Called before every test"""
+        """called before every test"""
         self.driver = setup_selenium_driver()
         setUp(self, self.driver)
         self.testdata = TestData()
         logger.info("setting up the test")
-
+    
     def test_03(self):
         """Passing invalid phone number and valid password"""
-        self.email.send_keys(
-            self.testdata.EMAIL_NUM)
-        self.password.send_keys(
-            self.testdata.PASSWORD_NUM)
-        self.login.click()
-        #MISS
-        incorrect = "should enter to home page"
-    def tearDown(self):
-        """called after every test"""
-        TearDown(self.driver)
+        self.email.send_keys(  # pylint: disable=no-member
+        self.testdata.EMAIL_VALID)
+        self.password.send_keys(  # pylint: disable=no-member
+        self.testdata.PASSWORD_VALID)
+        self.login.click()  # pylint: disable=no-member
+        self.assertTrue(self.email.is_displayed(), "Email field is not displayed")
+        self.assertTrue(self.password.is_displayed(), "Password field is not displayed")
+    
+        def tearDown(self):
+            """called after every test"""
+            TearDown(self.driver)
+    
 
 if __name__ == "__main__":
     suite = unittest.TestSuite()
