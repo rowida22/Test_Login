@@ -25,7 +25,7 @@ class test_20_login(unittest.TestCase):
         self.email.send_keys(  # pylint: disable=no-member
             self.testdata.EMAIL_VALID)
         self.password.send_keys(  # pylint: disable=no-member
-            self.testdata.PASSWORD_VALID)
+            self.testdata.PASSWORD_INALID)
         self.login.click()
         self.forgot_password.click()
         self.assertTrue(self.email.is_displayed(), "Email field is not displayed")
