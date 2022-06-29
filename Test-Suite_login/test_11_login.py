@@ -1,9 +1,8 @@
 """Passing invalid phone and password
  TC_11_LOGIN Refer to https://sampletestcases.com/test-cases-for-fb-login-page/ """
 
-from asyncio.log import logger
 from packages.logger import project_logger
-from pacaskages.testsuites.suite_login.init import (
+from packages.testsuites.suite_login.init import (
     TestData, SetUp, TearDown, setup_selenium_driver, unittest)
 
 logger = project_logger("Login Test Case 11")

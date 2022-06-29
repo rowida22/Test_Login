@@ -3,8 +3,8 @@ the user should be navigated to the forgot password page.
  TC_20_LOGIN Refer to  https://sampletestcases.com/test-cases-for-fb-login-page/ """
 
 from packages.logger import project_logger
-from packages.testsuits.suite_login_init import(
-    TestData, setUp, TearDown, setup_selenium_driver,unittest)
+from packages.testsuites.suite_login.init import (
+    TestData, SetUp, TearDown, setup_selenium_driver, unittest)
 
 logger = project_logger("Login Test Case 20")
 

@@ -3,7 +3,7 @@
  Refer to  https://sampletestcases.com/test-cases-for-fb-login-page/ """
 
 from packages.logger import project_logger
-from pakages.testsuites.suite_login.init import (
+from packages.testsuites.suite_login.init import (
     TestData, SetUp, TearDown, setup_selenium_driver, unittest)
 
 logger = project_logger("Login Test Case 4")
