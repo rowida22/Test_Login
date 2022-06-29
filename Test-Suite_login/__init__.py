@@ -9,16 +9,18 @@ from packages.project_selenium import (setup_selenium_driver, teardown_selenium_
                                        webdriver, selenium_exceptions,
                                        By, EC, WebDriverWait, unittest)
 
-logger = project_logger("Registration Test Suite initialization")
+logger = project_logger("Login Test Suite initialization")
 
 class TestData:
     """test data that is used in the test cases"""
     logger.info("initializing test data")
     BLANK_SPACES = " "
-    PASSWORD_NUM = "12345678"
-    PASSWORD_VALID = "12345678eer"
+    PASSWORD_NUM = "123456786489375873298"
+    PASSWORD_INVALID = "123456778dsh8ww"
+    PASSWORD_VALID = "12345678ee35fcrthgtvhr"
     PASSWORD_LETTER = "Password"
     PASSWORD_NUM_LETTER = "Pass123456"
+    OLD_PASSWORD = "12345678ee35fcrthg"
     EMAIL_VALID = "test7@gmail.com"
     EMAIL_INVALID = "test@gmail.com"
     EMAIL_INVALID2 = "test.22@gmail.com"
@@ -51,7 +53,7 @@ class TearDown():  # pylint: disable = too-few-public-methods
 
     def __init__(self, driver):
         try:
-            logger.info("Tearing down Registration Test Suite")
+            logger.info("Tearing down Login Test Suite")
             logger.info("tearing down the test")
             teardown_selenium_driver(driver)
             logger.info("test tear down")

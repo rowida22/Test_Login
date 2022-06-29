@@ -1,29 +1,39 @@
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
+"""Passing invalid phone and password
+ TC_11_LOGIN Refer to https://sampletestcases.com/test-cases-for-fb-login-page/ """
 
-class Test_11_login(unittest.TestCase):
-    """foo"""
+from asyncio.log import logger
+from packages.logger import project_logger
+from pacaskages.testsuites.suite_login.init import (
+    TestData, SetUp, TearDown, setup_selenium_driver, unittest)
+
+logger = project_logger("Login Test Case 11")
+
+class test_11_login(unittest.TestCase):
+    """Passing invalid phone and password"""
+
     def setUp(self):
-        """this function run before every test"""
-        self.driver = webdriver.Chrome("C:\\Program Files (x86)\\chromedriver.exe")
-        self.driver.get("https://facebook.com")
-        self.driver.implicitly_wait(10)
-        
-    def test_01(self):
-        """this function Passing invalid phone and password"""
-        email = self.driver.find_element(By.NAME, "email")
-        email.send_keys("0291803893")
-        passwd = self.driver.find_element(By.NAME, "pass")
-        passwd.send_keys("7812737822")
-        passwd.send_keys(Keys.RETURN)
-    
-    
+        """called before every test"""
+        self.driver = setup_selenium_driver()
+        SetUp(self, self.driver)
+        self.testdata = TestData()
+        logger.info("setting up the test")
+
+    def test_11(self):
+        """Passing invalid phone and password"""
+        self.phone.send_keys(  # pylint: disable=no-member
+            self.testdata.EMAIL_INVALID)
+        self.password.send_keys(  # pylint: disable=no-member
+            self.testdata.PASSWORD_LETTER)
+        self.login.click()  # pylint: disable=no-member
+        incorrect = self.classifier.find_text_field_matching_label(# pylint: disable=no-member
+            "incorrect")
+        self.assertTrue(incorrect.is_displayed(), "Incorrect email or password")
+
     def tearDown(self):
-        """this function run after every test"""
-        self.driver.quit()
-            
+        """called after every test"""
+        TearDown(self.driver)
 if __name__ == "__main__":
-    """This is the main function will Run the Unit Test if this Moudle is not imported"""
-    unittest.main()
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(test_11_login))
+    runner = unittest.TextTestRunner()
+    runner.run(suite)

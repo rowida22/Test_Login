@@ -21,13 +21,12 @@ class test_08_login(unittest.TestCase): # pylint: disable=too-many-instance-attr
     def test_08(self):
         """Passing valid phone and password"""
         self.email.send_keys(  # pylint: disable=no-member
-            self.testdata.PHONE_VALID)
+            self.testdata.EMAIL_NUM)
         self.password.send_keys(  # pylint: disable=no-member
             self.testdata.PASSWORD_VALID)
         self.login.click()  # pylint: disable=no-member
         self.assertTrue(self.classifier.find_text_field_matching_label(# pylint: disable=no-member
-            "blank").is_displayed(), "Password is required")
-
+            "login").is_displayed(), "Login button is displayed")
     def tearDown(self):
         """called after every test"""
         TearDown(self.driver)

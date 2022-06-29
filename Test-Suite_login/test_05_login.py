@@ -21,7 +21,7 @@ class test_05_login(unittest.TestCase):
     def test_05(self):
         """Passing blank email and  vaild password"""
         self.email.send_keys(  # pylint: disable=no-member
-            self.testdata.EMAIL_BLANK)
+            self.testdata.BLANK_SPACES)
         self.password.send_keys(  # pylint: disable=no-member
             self.testdata.PASSWORD_VALID)
         self.login.click()  # pylint: disable=no-member

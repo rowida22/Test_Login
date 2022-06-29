@@ -1,35 +1,39 @@
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-class Test_14_login(unittest.TestCase):
-    """foo"""
+"""Passing valid email and blank password
+ TC_14_LOGIN Refer to https://sampletestcases.com/test-cases-for-fb-login-page/ """
+
+from asyncio.log import logger
+from logger import project_logger
+from packages.testsuites.suite_login.init import (
+    TestData, SetUp, TearDown, setup_selenium_driver, unittest) 
+
+logger = project_logger("Login Test Case 14")
+
+class test_14_login(unittest.TestCase):
+    """Passing valid email and blank password"""
+
     def setUp(self):
-        """this function run before every test"""
-        self.driver = webdriver.Chrome("C:\\Program Files (x86)\\chromedriver.exe")
-        self.driver.get("https://facebook.com")
-        self.driver.implicitly_wait(10)
-        self.Error_message = (By.CLASS_NAME, "_9ay7")
-        
-    def test_01(self):
-        """this function Passing valid email and blank password"""
-        email = self.driver.find_element(By.NAME, "email")
-        email.send_keys("lol@gmail.com")
-        email.send_keys(Keys.TAB)
-        
-        try:
-          main = WebDriverWait(self.driver,10).until(
-            EC.presence_of_all_elements_located(self.Error_message) #need to locate var Error_message=[The email address or mobile number you entered isn't connected to an account]
-          )
-          if EC.presence_of_all_elements_located(self.Error_message):assert True
-        except: assert False
+        """called before every test"""
+        self.driver = setup_selenium_driver()
+        SetUp(self, self.driver)
+        self.testdata = TestData()
+        logger.info("setting up the test")
+
+    def test_14(self):
+        """Passing valid email and blank password"""
+        self.email.send_keys(  # pylint: disable=no-member
+            self.testdata.EMAIL_VALID)
+        self.password.send_keys(  # pylint: disable=no-member
+            self.testdata.BlANK_SPACES)
+        self.login.click()  # pylint: disable=no-member
+        self.assertTrue(self.classifier.find_text_field_matching_label(# pylint: disable=no-member
+            "login").is_displayed(), "Password is Required")
 
     def tearDown(self):
-        """this function run after every test"""
-        self.driver.quit()
-            
+        """called after every test"""
+        TearDown(self.driver)
+
 if __name__ == "__main__":
-    """This is the main function will Run the Unit Test if this Moudle is not imported"""
-    unittest.main()
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(test_14_login))
+    runner = unittest.TextTestRunner()
+    runner.run(suite)

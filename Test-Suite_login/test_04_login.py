@@ -21,9 +21,9 @@ class test_04_login(unittest.TestCase):
     def test_04(self):
         """Passing invalid phone number and invalid password"""
         self.email.send_keys(  # pylint: disable=no-member
-        self.testdata.EMAIL_INVALID)
+        self.testdata.EMAIL_NUM)
         self.password.send_keys(  # pylint: disable=no-member
-        self.testdata.PASSWORD_INVALID)
+        self.testdata.PASSWORD_NUM)
         self.login.click()  # pylint: disable=no-member
         self.assertTrue(self.email.is_displayed(), "Email field is not displayed")
         self.assertTrue(self.password.is_displayed(), "Password field is not displayed")
